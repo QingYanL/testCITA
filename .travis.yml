@@ -34,9 +34,11 @@ jobs:
     - ./scripts/replace_default_feature.sh ./ secp256k1 ${CRYPTO_ALGO}
     script: ./env.sh "make release"
     before_cache:
+    - mv -vf target/install  docker/release/cita_secp256k1_sha3
     - cd $TRAVIS_BUILD_DIR
     - rm -rf target/release-cache
     - mv -vf target/install target/release-cache
+
 
   - &stage-contract-test-sha3-secp256k1
     stage: IntegrateTest
